@@ -1,0 +1,48 @@
+<?php 
+$user = $db->select('user')->where(["id={$_SESSION['user_id']}"])->one();
+
+$arrMenu = [];
+$arrMenu[]=['title'=>'<i class="fa fa-home"></i> Home','rout'=>'index.php'];
+$arrMenu[]=['title'=>'ทดสอบ','rout'=>'index.php?r=test'];
+?>
+<!-- side-menu -->
+<ul class="nav" id="side-menu">
+    <li>
+        <!-- user image section-->
+        <div class="user-section">
+            <div class="user-section-inner">
+                <img src="<?= $asset_path ?>assets/img/user.jpg" alt="">
+            </div>
+            <div class="user-info">
+                <div><?=$user->displayname?></div>
+                <div class="user-text-online">
+                    <span class="user-circle-online btn btn-success btn-circle "></span>&nbsp;Online
+                </div>
+            </div>
+        </div>
+        <!--end user image section-->
+    </li>
+    <li class="sidebar-search">
+        <!-- search section-->
+        <div class="input-group custom-search-form">
+            <input type="text" class="form-control" placeholder="Search...">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button">
+                    <i class="fa fa-search"></i>
+                </button>
+            </span>
+        </div>
+        <!--end search section-->
+    </li>
+    
+    
+    <?php
+    foreach ($arrMenu as $menu):?>
+    <li class="<?=$menu['selected']?>">
+        <a href="<?=$menu['rout']?>"><?=$menu['title']?></a>
+    </li>
+    <?php    endforeach;?>
+    
+    
+</ul>
+<!-- end side-menu -->
