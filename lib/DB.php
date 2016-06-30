@@ -81,6 +81,7 @@ class DB extends PDO {
         $sql.=$where? " WHERE " .implode(" AND ", $where):'' ;
         $sql.=$orWhere? " OR " .implode(" OR ", $orWhere):'' ;
         //echo $sql;
+		//exit();
         $query = $this->prepare($sql);
         return $query->execute();
     }
@@ -88,8 +89,18 @@ class DB extends PDO {
     public function delete($tb,$where,$orWhere=[]){
       $sql = "DELETE FROM {$tb} ";
       $sql.=$where? " WHERE " .implode(" AND ", $where):'' ;
-      $sql.=$orWhere? " OR " .implode(" OR ", $orWhere):'' ;      
+      $sql.=$orWhere? " OR " .implode(" OR ", $orWhere):'' ;
       return $this->query($sql);
+    }
+
+    public function redirect($rout,$param=[]){
+      $params =[];
+      if($param){
+        foreach($param as $k=>$v)
+          $params[] = $k."=".$v;
+      }
+      $params=($params)?"&".@implode('&',$params):'';
+      header('Location:index.php?r='.$rout.$params);
     }
 
 

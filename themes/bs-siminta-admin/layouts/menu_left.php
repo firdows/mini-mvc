@@ -1,9 +1,14 @@
-<?php 
+<?php
 $user = $db->select('user')->where(["id={$_SESSION['user_id']}"])->one();
 
 $arrMenu = [];
-$arrMenu[]=['title'=>'<i class="fa fa-home"></i> Home','rout'=>'index.php'];
-$arrMenu[]=['title'=>'ทดสอบ','rout'=>'index.php?r=test'];
+$arrMenu[]=['title'=>'<i class="fa fa-home"></i> หน้าหลัก','rout'=>'index.php'];
+//$arrMenu[]=['title'=>'ทดสอบ','rout'=>'index.php?r=test'];
+//$arrMenu[]=['title'=>'ตัวอย่างทั้งหมด','rout'=>'index.php?r=ying'];
+$arrMenu[]=['title'=>'<i class="fa fa-user"></i> ข้อมูลผู้ป่วย','rout'=>'index.php?r=patient'];
+$arrMenu[]=['title'=>'<i class="fa fa-tasks"></i> การรักษาพยาบาล','rout'=>'index.php?r=treat'];
+$arrMenu[]=['title'=>'<i class="fa fa-flask"></i> ยา-เวชภัณฑ์','rout'=>'index.php?r=medicine'];
+$arrMenu[]=['title'=>'<i class="fa fa-files-o"></i> รายงาน','rout'=>'index.php?r=report'];
 ?>
 <!-- side-menu -->
 <ul class="nav" id="side-menu">
@@ -34,15 +39,15 @@ $arrMenu[]=['title'=>'ทดสอบ','rout'=>'index.php?r=test'];
         </div>
         <!--end search section-->
     </li>
-    
-    
+
+
     <?php
     foreach ($arrMenu as $menu):?>
     <li class="<?=$menu['selected']?>">
         <a href="<?=$menu['rout']?>"><?=$menu['title']?></a>
     </li>
     <?php    endforeach;?>
-    
-    
+
+
 </ul>
 <!-- end side-menu -->

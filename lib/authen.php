@@ -16,12 +16,12 @@ if(isset($_POST['login'])){
     }else{
         $_SESSION['login_err'] = "กรุณาตรวจสอบ Username กับ Password";
     }
-    //header('Location:'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']);
+    header('Location:'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']);
 }
 
 
-if(isset($_POST['logout'])||isset($_GET['logout'])){    
-    $_SESSION['login'] = false;    
+if(isset($_POST['logout'])||isset($_GET['logout'])){
+    $_SESSION['login'] = false;
     unset($_SESSION['user_id']);
     header('Location:index.php');
 }
